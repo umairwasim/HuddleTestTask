@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/DOTween Examples/Follow.unity
+    guid: 6d6003cb2f193b944917e6f4ae3807ff
   m_configObjects: {}
