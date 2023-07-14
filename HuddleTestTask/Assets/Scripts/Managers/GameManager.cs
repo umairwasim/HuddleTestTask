@@ -12,7 +12,8 @@ public enum GameState
     WaitForInput,
     Moving,
     Win,
-    Lose
+    Lose,
+    Play
 }
 
 public class GameManager : MonoBehaviour
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     private readonly float boardOffset = 0.5f;
 
-    #region Get Functions
+    #region Getter Functions
 
     private BlockData GetBlockDataByValue(int value)
     {
