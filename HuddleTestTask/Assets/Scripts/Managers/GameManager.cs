@@ -18,6 +18,8 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
     public GameState gameState;
 
     public event Action OnGameWon;
@@ -39,6 +41,11 @@ public class GameManager : MonoBehaviour
     private int round = 0;
 
     private readonly float boardOffset = 0.5f;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     #region Getter Functions
 
