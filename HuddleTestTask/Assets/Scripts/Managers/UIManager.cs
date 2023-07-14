@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Menus")]
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject gameplayMenu;
+    [SerializeField] private GameObject gameWonMenu;
+    [SerializeField] private GameObject gameLostMenu;
+
+    [Header("Buttons")]
+    [SerializeField] private Button playButton;
+
+    public void PlayButtonPressed()
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RestartGame()
     {
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
