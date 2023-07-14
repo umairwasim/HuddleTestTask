@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
 
     private void SpawnBlock(Tile freeTile, int value)
     {
-        //Increment Moves counter 
+ 
 
         //Spawn given number of blocks at our freeTile position
         var spawnBlock = Instantiate(blockPrefab, freeTile.Pos, Quaternion.identity);
@@ -224,6 +224,9 @@ public class GameManager : MonoBehaviour
     void ShiftBlocks(Vector2 direction)
     {
         ChangeGameState(GameState.Moving);
+
+        //Increment Moves counter 
+        OnMoveCounter?.Invoke();
 
         #region Order Blocks
         //order the blocks by X and then by Y
