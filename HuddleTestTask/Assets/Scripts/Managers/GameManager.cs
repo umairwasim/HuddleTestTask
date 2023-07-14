@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    private void ChangeGameState(GameState currentState)
+    public void ChangeGameState(GameState currentState)
     {
         gameState = currentState;
 
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeGameState(GameState.GenerateGrid);
+        ChangeGameState(GameState.WaitForInput);
     }
 
     private void Update()
