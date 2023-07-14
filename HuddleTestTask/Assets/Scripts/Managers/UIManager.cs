@@ -28,18 +28,21 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+
+        ActivateMenu(menu);
         GameManager.Instance.OnGameWon += GameManager_OnGameWon;
         GameManager.Instance.OnGameLost += GameManager_OnGameLost;
-        ActivateMenu(menu);
+        GameManager.Instance.OnMoveCounter += GameManager_OnMoveCounter;
     }
 
     private void OnDestroy()
     {
         GameManager.Instance.OnGameWon -= GameManager_OnGameWon;
         GameManager.Instance.OnGameLost -= GameManager_OnGameLost;
+        GameManager.Instance.OnMoveCounter -= GameManager_OnMoveCounter;
     }
 
-    private void IncrementMovesValue()
+    private void GameManager_OnMoveCounter()
     {
         moveCounter++;
         moveText.text = "MOVES: " + moveCounter;
