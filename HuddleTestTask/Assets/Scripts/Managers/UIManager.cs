@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 public enum MenuState
 {
     Main,
@@ -22,19 +22,55 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button wonButton;
     [SerializeField] private Button lostButton;
 
+    [Header("Texts")]
+    [SerializeField] private TextMeshProUGUI moveText;
+    private int moveCounter = 0;
+
     private void Start()
+    {
+        GameManager.Instance.OnGameWon += GameManager_OnGameWon;
+        GameManager.Instance.OnGameLost += GameManager_OnGameLost;
+        ActivateMenu(menu);
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnGameWon -= GameManager_OnGameWon;
+        GameManager.Instance.OnGameLost -= GameManager_OnGameLost;
+    }
+
+    private void IncrementMovesValue()
+    {
+        moveCounter++;
+        moveText.text = "MOVES: " + moveCounter;
+    }
+
+    private void GameManager_OnGameLost()
+    {
+        menu = MenuState.Lost;
+        ActivateMenu(menu);
+    }
+
+    private void GameManager_OnGameWon()
+    {
+        menu = MenuState.Won;
+        ActivateMenu(menu);
+    }
+
+    private void ActivateMenu(MenuState menuToActivate)
     {
         for (int i = 0; i < menus.Length; i++)
         {
             menus[i].SetActive(false);
         }
-        //Enable the main menu only
-        menus[(int)MenuState.Main].SetActive(true);
+        //Enable the selected menu only
+        menus[(int)menuToActivate].SetActive(true);
     }
 
     public void PlayButtonPressed()
     {
-        menus[(int)MenuState.Main].SetActive(false);
+        menu = MenuState.Game;
+        ActivateMenu(menu);
         GameManager.Instance.ChangeGameState(GameState.GenerateGrid);
     }
 
