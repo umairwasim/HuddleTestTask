@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     public event Action OnGameWon;
     public event Action OnGameLost;
+    public event Action OnMoveCounter;
 
     [SerializeField] private int width = 4;
     [SerializeField] private int height = 4;
@@ -169,6 +170,8 @@ public class GameManager : MonoBehaviour
 
     private void SpawnBlock(Tile freeTile, int value)
     {
+        //Increment Moves counter 
+
         //Spawn given number of blocks at our freeTile position
         var spawnBlock = Instantiate(blockPrefab, freeTile.Pos, Quaternion.identity);
 
