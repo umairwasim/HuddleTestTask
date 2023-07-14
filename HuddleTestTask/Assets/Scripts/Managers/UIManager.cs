@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using DG.Tweening;
+
 public enum MenuState
 {
     Main,
@@ -28,7 +30,6 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-
         ActivateMenu(menu);
         GameManager.Instance.OnGameWon += GameManager_OnGameWon;
         GameManager.Instance.OnGameLost += GameManager_OnGameLost;
@@ -46,6 +47,7 @@ public class UIManager : MonoBehaviour
     {
         moveCounter++;
         moveText.text = "MOVES: " + moveCounter;
+        moveText.transform.DOShakeScale(0.1f);
     }
 
     private void GameManager_OnGameLost()
